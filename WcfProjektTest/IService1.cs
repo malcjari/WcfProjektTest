@@ -62,6 +62,4 @@ namespace WcfProjektTest
         public int category { get; set; }
 
     }
-
-
 }

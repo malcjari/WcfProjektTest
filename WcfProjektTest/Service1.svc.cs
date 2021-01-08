@@ -29,6 +29,10 @@ namespace WcfProjektTest
             {
                 Cases tempCase = new Cases();
 
+                //var x = tempCase.date.ToShortDateString();
+                //var y = iCase.date.ToShortDateString();
+                //x = y;
+
                 tempCase.date = iCase.date;
                 tempCase.lat = iCase.lat;
                 tempCase.lng = iCase.lng;
@@ -55,6 +59,8 @@ namespace WcfProjektTest
                 foreach (var item in tempList)
                 {
                     CaseData c = new CaseData();
+
+                
 
                     c.id = item.id;
                     c.date = item.date;
