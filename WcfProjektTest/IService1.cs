@@ -18,6 +18,15 @@ namespace WcfProjektTest
 
         [OperationContract]
         void addCase(CaseData iCase);
+
+        [OperationContract]
+        void deleteCase(int id);
+
+        [OperationContract]
+        void editCase(int id, int category, string description, bool isActive);
+
+        [OperationContract]
+        bool logIn(string username, string password);
     }
 
 
@@ -53,4 +62,6 @@ namespace WcfProjektTest
         public int category { get; set; }
 
     }
+
+
 }

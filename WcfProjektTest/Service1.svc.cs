@@ -12,6 +12,16 @@ namespace WcfProjektTest
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        public void deleteCase(int id)
+        {
+            using(DbModel db = new DbModel())
+            {
+                Cases c = new Cases();
+                c = db.Cases.Find(id);
+                db.Cases.Remove(c);
+                db.SaveChanges();
+            }
+        }
 
         public void addCase(CaseData iCase)
         {
@@ -33,6 +43,7 @@ namespace WcfProjektTest
             }
         }
 
+        
         public List<CaseData> getAllCases()
         {
             List<CaseData> returnList = new List<CaseData>();
@@ -61,6 +72,40 @@ namespace WcfProjektTest
             }
 
             return returnList;
+        }
+
+        public void editCase(int id, int category, string description, bool isActive)
+        {
+            using(DbModel db = new DbModel())
+            {
+                Cases c = db.Cases.Find(id);
+                c.category = category;
+                c.description = description;
+                c.isActive = isActive;
+
+                db.Entry(c).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public bool logIn(string username, string password)
+        {
+            using(DbModel db = new DbModel())
+            {
+                bool logInOk = false;
+
+                var userList = db.Users.ToList();
+
+                foreach (var item in userList)
+                {
+                    if(username == item.username)
+                    {
+                        logInOk = true;
+                    }
+                }
+
+                return logInOk;
+            }
         }
     }
 }
